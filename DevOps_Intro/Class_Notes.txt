@@ -1,0 +1,335 @@
+#################################
+DCP - Start Date : 3rd July 2023
+#################################
+
+#######################
+Day-1 - 3rd July 2023
+#######################
+
+		Introduction to DevOps!!!
+		
+		Software Development LifeCycle!
+		
+		Software --> Application Software 
+						- Desktop Application
+						- Mobile Application
+						- Web Application		-- 
+				 --> System Software 
+						- Chip Level Programming Application
+						- OS Level Programming Application
+						- Middleware Products
+						
+		Software Development LifeCycle! 
+			Web Application --> Statice Web page / blog page
+			
+		SDLC :::
+		
+			Requirement Analysis
+			Design
+			Code/Development 
+			Test 
+			Deployment/Implementaion 
+			monitor/Maintain
+			
+		Waterfall Model (Desktop Application)			--> Linear in fashion.
+		
+		Project-1 
+			Requirement Analysis		--> (6month)
+			Design
+			Code/Development 			--> 3rd month
+			Test 
+			Deployment/Implementaion 
+			monitor/Maintain
+			
+		Project-2			
+			Requirement Analysis		--> (6month)
+			Design
+			Code/Development 			--> 3rd month
+			Test 
+			Deployment/Implementaion 
+			monitor/Maintain
+			
+		Agile Methodologies :::
+		
+		Iterations 1:	(Module)
+			Requirement Analysis
+			Design
+			Code/Development 
+			Test 
+						Deployment/Implementation 
+						monitor/Maintain
+
+		Iterations 2:
+			Requirement Analysis
+			Design
+			Code/Development 
+			Test 
+						Deployment/Implementation 
+						monitor/Maintain
+			
+		Iterations 3:
+			Requirement Analysis
+			Design
+			Code/Development 
+			Test 
+						Deployment/Implementation 
+						monitor/Maintain
+			
+		Using Agile Methodologies we can able to achieve Continuous Delivery. But, NOT Continuous Deployment.	
+		
+		
+		- Continuous Delivery 		
+		- Continuous Deployment
+		
+		
+		DevOps 
+		
+		- Web Application --> E_Commerce Portal
+		
+		Tele-comm Domain
+			Tele-comm Service Provider1 --> 
+			Tele-comm Service Provider2 -->
+			Tele-comm Service Provider3 -->
+			
+		DevOps :: -- Process Perspective ::: 
+		
+		DevOps Engg. :::
+		
+				Build a colaboration between the teams::::
+		
+		SDLC :
+			Teams :::
+			
+				- Business Analyst
+				- Developers
+				- QA - Testing
+				- Operation Team
+				- DBA 
+				- Infra Architects
+				- Release Management Team 
+				- Maintain/Deployment 
+				
+			Technically :
+			
+				- Infra-Structure Management Team 			===> Provision/Create the servers --> IAC Tools(Terraform) 
+				- Application Development Team				===> Coding/Development ==> IDEs --> GIT/Jenkins
+				- Testing Team 								===> Automate Testing Testing - Integration with Notification Tools - Jenkins
+				- Release Management Team					===> Automated Deployment - Ansible/Docker/Kubernetes
+				- Production Support Team / Monitoring Team ===> Monitoring Tools - Prometheus/Grafana/App-Dynamics
+				- Security Team 							===> Static scan/Dynamic Scan security Tool.
+	
+			DevOps Team :::
+			
+				E_Commerce --> Portal ==> Deployed ==> 			
+				
+			Environments :::
+			
+			Non-Prod Environment														Production Environment
+			
+				DEV 		(Developers use this for development)
+				Test 
+					QA 
+					UAT 											====>
+					Pre-Prod/Staging 														Prod Environment
+					
+		
+			DevOps Stages :::
+			
+				Continuous Development				-> Developers --> 
+						Developers --> role of developer? --> coding & unit test.
+						code
+						build 
+						create artifacts 
+						publish the artifacts to artifactory library
+						Unit Testing 
+						promote the code to test environment
+						Notifiy the testing team 
+						
+					Using DevOps process ::::
+						Code --> commit the code to source code repository
+						DevOps will automate rest of the process.
+				
+				Continuous Integration
+						--> allows developers to continuously integrate the code for further testing
+						
+				Continuous Testing 
+						--> Automated testing tools - Continuous Testing
+				
+				Continuous Delivery/Deployment 	==> Used for production Release activities.
+				
+						Continuous Delivery		==> Needs Manual approval for Production Release.
+						Continuous Deployment	==> Automated Deployment to prod - Without any manual Approval.				
+										This can be achieve based on Application Architecture.
+				Continuous Monitoring
+						--> Monitor the Infra-Structure & Application 
+			
+			
+		Application Architecture ::
+			
+				- Monolith Application Architecture
+				
+						Software Application --> composed of various Modules. 
+						These are tightly coupled applications.
+				
+				- Micro-Service Based Application Architecture
+				
+				Applications - are splitted into various services ::
+				
+			amazon.com :: - Web_Application :::
+			
+			- Sign_up			--> Micro-Service (3-tier Application- frontend/Application_logic/backend) -> Independently developed/Tested/Deployed to Prod
+			- Sign-In 
+			- Product Search
+			- Add to cart 
+			- place the order 
+			- payment 
+			- confirm the order 
+			- track the order
+			
+			
+#######################
+Day-2 - 4th July 2023
+#######################		
+		
+		DevOps is a software Development Strategy, that helps to promote the colaboration between the Development Team and Operations Team to achieve Continuous Integration, Continuous Delivery/Deployment, in more automated fashion.
+		
+		DevOps Stages ::::
+		
+		Continuous Integration
+		Continuous Delivery/Deployment
+		
+			amazon.com :: - Web_Application :::
+			
+			- Sign_up			--> Micro-Service (3-tier Application- frontend/Application_logic/backend) -> Independently developed/Tested/Deployed to Prod
+			- Sign-In 			--> Micro-Service ( Developer1 ) -> Independently developed/Tested/Deployed to Prod - src code repo.
+			- Product Search
+			- Add to cart 
+			- place the order 
+			- payment 
+			- confirm the order 
+			- track the order
+			
+		Application Owners/Architects --> 
+		
+		
+				Continuous Delivery/Deployment 	==> Used for production Release activities.
+				
+						Continuous Delivery		==> Needs Manual approval for Production Release.
+						Continuous Deployment	==> Automated Deployment to prod - Without any manual Approval.				
+										This can be achieve based on Application Architecture.
+										
+		
+		Before we move the app to prod., 
+			Security Audit ==> 
+			
+		
+		
+		Banking Applications ==> Online services 
+		
+				Prod_Deployment window ==> 4hr to 6 hrs.	===> Non-Business Hours 
+		
+			
+		
+		
+		amazon		
+		netflix
+		facebook
+		google   		Continuous Deployment 
+		
+			Assessment ==> 
+			
+			
+		Tools Used :::
+		
+			Continuous Development						IDEs, GIT, Jenkins 
+							Eclipse based IDEs 	--> Eclipse, Visual Studio Code, Pycharm, Visual Studio 
+							Application Build 	--> Process of Compiling the Source Code and Creating Artifacts.
+							Eg.: Java Web Application - Maven/Springboot app framework (High Level Language)
+									Compile
+									create artifacts --> (Binaries - *.war/*.jar/*.dll/*.exec)									
+									Build Tools ==> Maven Build Tool
+							
+			Continuous Integration
+							GIT,Jenkins 
+							Testing Environment
+								QA 		
+								UAT 
+							
+			
+			Continuous Delivery/Deployment
+							Jenkins, Ansible,Docker,Kubernetes
+							Deployment ??? 
+							
+								Just a process of copying the artifacts from one environment to another.
+							
+					Non-Prod Environment														Production Environment
+					
+						DEV 		(Developers use this for development)
+						Test 
+							QA 
+							UAT 											====>
+							Pre-Prod/Staging 														Prod Environment(Release)
+										
+			Continuous Testing
+							Jenkins, Junit, TestNG, Selenium Tools 
+						
+			Continuous Monitoring
+							Jenkins, Prometheus/Grafana/App-Dynamics					
+			
+			Jenkins --> Build Orchestration Tool 
+			
+			DevOps ==> 
+						People,DevOps Process, DevOps Tools
+						
+						
+			DevOps Tools :::
+			
+				--> Open Source DevOps Tools / Self-Managed Tools/Service				
+						Free --> GIT,Jenkins,Ansible,Docker,Kubernetes,Terraform,Prometheus/Grafana
+				
+				--> Managed Services 			Licensed products --> 
+						Provided by service providers
+							AWS 	Codepipeline,codecommit...
+							Azure   Az DevOps Services 
+							GCP 	Google DevOps Services
+							
+							
+			waterfall, Agile, DevOps, DevSecOps, SRE, GitOps, AIOps, MLOps
+			
+			
+			DevOps Roles & Responsibilities::
+			
+			DevOps Associate 				Initial Level
+			Sr. DevOps Associate
+			DevOps Engineer
+			DevOps Lead 
+			
+			Sr. DevOps Lead 
+			DevOps Architects
+			DevOps Consultants
+			SRE 
+			
+			
+Next ::: Version Control System using GIT ::::
+
+
+			Lab Requirements :::
+				
+				Create GITHub Account			==> github - Remote git repository
+				https://github.com/
+				
+				AWS Cloud Platform:			 
+				https://aws.amazon.com/console/	
+						1. Create Free Tier Account in AWS.
+						2. Launch Virtual Machines - EC2 Instances.
+				
+				SSH Client to access Virtual Machines
+				
+				DockerHub Account 
+				
+				
+				
+				
+			
+				
+
