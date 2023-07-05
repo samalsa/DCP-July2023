@@ -452,16 +452,16 @@ Day-3 - 5th July 2023
 				
 				Working Space/Directory							Staging/Index Area 					Local Repository		==> Remote Repository file1.txt
 				
-					
+				
+				git fork 		--> It is used to clone/copy one entire remote repo to another remote repo.
 			
-				git clone 		--> It is used to clone or copy the entire remote repo. into local machine(Updates both working dir and local repo)
+				git clone 		--> It is used to clone/copy the entire remote repo. into local machine(Updates both working dir and local repo)
 				
 				git add 		--> add the changes from working dir. to staging area
 				
 				git commit 		--> commit the changes from staging area to local repo.
 				
-				git push		--> push the changes from local repo to remote repo.
-				
+				git push		--> push the changes from local repo to remote repo.				
 				
 				git fetch/pull	
 					Used to get the incremental changes from remote repo to local machine.
@@ -475,11 +475,57 @@ Day-3 - 5th July 2023
 					- If any changes exist, it will update the changes in local repo. as well as in the working dir.
 					
 					
+				git fork 		--> It is used to copy one remote repo to another remote repo.
+					
+					
 			Developers Workload ?????			
 			
-				- New project 			
+				- New project 	
+				
 				- Enhancement Project 				
 				- Bugfix 
+				
+		
+			remote repo :::
+			
+				index.html --> (10 lines)	10KB   ==> ++10 Lines 
+							   (20 lines)   20KB
+				
+			Cloned to my local machine:
+			
+				index.html --> (10 lines)	10KB
+				
+			git pull
+			
+				index.html --> (10 lines)	10KB (New changes from remote)
+				index.html --> (20 lines)	20KB
+				
+				
+		Working with git ::::
+		
+		
+		Local Machine 																						
+			
+		Working Space/Directory							Staging/Index Area 					Local Repository
+		
+		
+		- Install GIT :::
+		
+			Install GIT in ur local machine.
+			https://git-scm.com/downloads
+			
+			For Windows Machine :::
+			
+				GIT Bash
+				GIT Cli
+				GIT GUI 
+			
+			Creata Project Workspace folder 
+				project_Repos
+				
+			git --version
+				
+			
 			
 			
 			
