@@ -526,8 +526,385 @@ Day-3 - 5th July 2023
 			git --version
 				
 			
+#######################
+Day-4 - 6th July 2023
+#######################	
+
+
+		Working with GIT :::
+		
+		GIT Cli 
+		
+		Focus of Local git repositories :::
+			
+			Installed GIT :::
+			
+			using Windows Machine. :::
+			
+			shell scripts/commands 		Linux 
+			
+			powershell scripts/commands Windows
 			
 			
 			
+		1. Create/Initialize New local Repository
+		
+			git init		==> Initialize a new local repository.
+								It create .git
+								It create a default branch - master.
 			
+			
+			Local Machine ::
+			Working Space/Directory							Staging/Index Area 					Local Repository
+			
+			file1.txt 					git add 
+			
+			
+			GIT :::
+				- Is Open Source Distributed Version Control System 
+				- It is used to Manage & Version Control the Source Code Changes
+				- It is used to Track the Changes 
+				- It is used to Perform Parallel Development.(Branching)			
+				
+				
+			git init 
+			
+			git add 
+				
+			Global Configuration::		--> Settings are applicable to all the repositories in local machine			
+				git config --global user.name "Loksai"
+				git config --global user.email "Loksaieta@asdfas.com"
+				
+			git commit 
+			
+			git status
+			
+			git log 
+			
+			HEAD --> is pointer maintained by GIT to track the changes.
+						HEAD always points to the latest commit of the current branch.
+						
+			Track the Changes :::
+			
+			git log
+			
+			
+			git config :::
+			
+				Local Configuration
+				Global Configuration
+			
+				
+			Global Configuration::		--> Settings are applicable to all the repositories in local machine			
+				git config --global user.name "Loksai"
+				git config --global user.email "Loksaieta@asdfas.com"
+						
+			Local Configuration::		--> Settings are applicable only to a specific repository in local machine
+				git config user.name ""
+				git config user.email ""
+						
+						
+			git ls-files 
+			
+			ls 
+			
+			
+			git add :::
+			
+				git add <file1.txt> <file2.txt>
+				
+				git add <file1.txt>
+				
+				git add *.txt 
+				git add *.java 
+				git add .
+				
+			Remove files from staging area :::
+			
+			git rm --cached <file1.txt>		==> jus removes from staging area, but the file will be retained in working dir.
+			git rm -f <file1.txt> 			==> removes from staging area, as well as from working dir.
+			
+			
+			git log :::
+			
+			git show <commit_id> 		==> used to get the details of specific commit point.
+			
+			
+			git log --oneline
+			
+			git log --stat
+			
+			git log -1
+			
+			
+			.gitignore file :
+			
+					--> Is used to maintain the list of files that can be ignored by git.
+					
+			Java_Project_WebAppln :		3 -tier --> Database. 
+				src/*.java
+				resource/*.html 
+				target/*.war
+				app.properties
+				secrets
+				mydb_crentialfile
+				
+			git add 
+			
+			git commit 
+			
+			git push ==> 
+			
+			.gitignore 
+				*.war 
+				target/
+				secrets
+				mydb_crentialfile
+				
+			echo "rec1" >> s1.txt 
+			vi - editor 
+
+Summary:::
+			
+  433  mkdir dcp-3rd-july
+  434  cd dcp-3rd-july/
+  435  pwd
+  436  mkdir repo1
+  437  clear
+  438  ls
+  439  cd repo1/
+  440  pwd
+  441  cd ..
+  442  mkdir repo2
+  443  ls
+  444  pwd
+  445  git --version
+  446  cd e:
+  447  cd dcp-3rd-july/
+  448  mkdir projrepo1
+  449  cd projrepo1/
+  450  pwd
+  451  cd ..
+  452  ls
+  453  rm -rf repo2
+  454  ls
+  455  clear
+  456  ls
+  457  cd projrepo1/
+  458  ls
+  459  clear
+  460  ls
+  461  ls -a
+  462  git init
+  463  ls -a
+  464  cd .git
+  465  ls
+  466  cd ..
+  467  ls
+  468  clear
+  469  cd ..
+  470  mkdir projrepo2
+  471  cd projrepo2
+  472  ls
+  473  cd ..
+  474  cd projrepo1/
+  475  clear
+  476  cd ..
+  477  cd projrepo
+  478  cd projrepo2
+  479  clear
+  480  git init
+  481  ls -a
+  482  echo "Hello"
+  483  ls
+  484  echo "Hello" >> file1.txt
+  485  ls
+  486  git status
+  487  git add file1.txt
+  488  git status
+  489  git commit -m "Created file1.txt"
+  490  git status
+  491  git log
+  492  cd ..
+  493  clear
+  494  ls
+  495  clear
+  496  mkdir projrepo3
+  497  cd projrepo3
+  498  clear
+  499  pwd
+  500  git status
+  501  git init
+  502  git status
+  503  ls
+  504  echo "rec1" >> file1.txt
+  505  ls
+  506  git status
+  507  git add file1.txt
+  508  git status
+  509  git commit -m "Added file1.txt"
+  510  git status
+  511  git log
+  512  echo "rec1" >> file2.txt
+  513  git add file2.txt
+  514  git commit -m "Created file2.txt"
+  515  git log
+  516  echo " rec1" >> file3.txt
+  517  git add file3.txt
+  518  git commit -m "created file3.txt"
+  519  git log
+  520  git status
+  521  echo "rec1" >> file4.txt
+  522  git status
+  523  git add file4.txt
+  524  git status
+  525  git commit -m "created file4.txt"
+  526  clear
+  527  git log
+  528  git config --global user.email "Loksaieta@asdfas.com"
+  529  git config --global user.name "Loksaieta"
+  530  echo "rec1" >> file8.txt
+  531  git add file8.txt
+  532  git commit -m "created file8.txt"
+  533  git log
+  534  clear
+  535  git log
+  536  clear
+  537  cd ..
+  538  mkdir projrepo4
+  539  cd projrepo4
+  540  git init
+  541  echo "rec1" >> s1.txt
+  542  git add s1.txt
+  543  git commit -m "CM1"
+  544  git log
+  545  git config user.name "dcpuser1"
+  546  echo "rec" >> s2.txt
+  547  git add s2.txt
+  548  git commit -m "CM2"
+  549  git log
+  550  cd ..
+  551  mdkir projrepo5
+  552  mkdir projrepo5
+  553  cd projrepo5
+  554  git init
+  555  echo "rec1" >> f1.txt
+  556  git add f1.txt
+  557  git commit -m "CM1"
+  558  git log
+  559  git config list
+  560  git config --list
+  561  clear
+  562  git config --list
+  563  clear
+  564  git log
+  565  clear
+  566  cd ..
+  567  ls
+  568  git status
+  569  cd projrepo5
+  570  git log
+  571  clear
+  572  ls
+  573  git log
+  574  clear
+  575  ls
+  576  git ls-files
+  577  echo "rec1" >> f2.txt
+  578  ls
+  579  git ls-files
+  580  git status
+  581  git add f2.txt
+  582  git ls-files
+  583  git status
+  584  clear
+  585  git status
+  586  git commit -m "CM2"
+  587  clear
+  588  git log
+  589  clear
+  590  echo "rec1" >> s1.txt
+  591  echo "rec1" >> s2.txt
+  592  echo "rec1" >> s3.txt
+  593  echo "rec1" >> a1.java
+  594  echo "rec1" >> a2.java
+  595  echo "rec1" >> q1.doc
+  596  echo "rec1" >> q1.jsp
+  597  clear
+  598  ls
+  599  git ls-files
+  600  git status
+  601  git add *.txt
+  602  git status
+  603  git ls-files
+  604  git add .
+  605  git ls-files
+  606  git status
+  607  git rm --cached q1.doc
+  608  git ls-files
+  609  git status
+  610  ls
+  611  git rm -f q1.jsp
+  612  git ls-files
+  613  ls
+  614  git status
+  615  git add .
+  616  git log
+  617  git commit -m "CM3"
+  618  clear
+  619  git log
+  620  git show cbfa00d
+  621  git show 3c27266d
+  622  clear
+  623  git log
+  624  git log --oneline
+  625  git log --stat
+  626  clear
+  627  git log --oneline
+  628  git log -2
+  629  git log -1
+  630  git log --oneline -2
+  631  git log --twoline -2
+  632  clear
+  633  git log --oneline -2
+  634  git log --stat -1
+  635  git log --oneline -2
+  636  git show 3c27266
+  637  clear
+  638  cd ..
+  639  mkdir
+  640  mkdir projrepo6
+  641  cd projrepo6
+  642  git init
+  643  ls
+  644  vi .gitignore
+  645  cat .gitignore
+  646  ls -a
+  647  git status
+  648  git add .
+  649  git commit -m "Initial commit - added .gitignore"
+  650  git status
+  651  git log --oneline
+  652  cat .gitignore
+  653  echo "rec1" >> file1.txt
+  654  echo "rec1" >> s1.doc
+  655  git status
+  656  echo "rec1" >> sample1.txt
+  657  git status
+  658  git add .
+  659  git commit -m "cm1"
+  660  clear
+  661  ls
+  662  vi .gitignore
+  663  git add .
+  664  git commit -m "updated .gitignore"
+  665  echo "rec1" >> l1.txt
+  666  git status
+  667  ls
+  668  git ls-files
+  669  echo "rec1" k1.sam
+  670  echo "rec1" > k1.sam
+  671  git status
+  672  history
+		
 			
