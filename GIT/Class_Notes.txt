@@ -211,7 +211,6 @@ Day-2 - 4th July 2023
 			
 		Application Owners/Architects --> 
 		
-		
 				Continuous Delivery/Deployment 	==> Used for production Release activities.
 				
 						Continuous Delivery		==> Needs Manual approval for Production Release.
@@ -227,9 +226,6 @@ Day-2 - 4th July 2023
 		Banking Applications ==> Online services 
 		
 				Prod_Deployment window ==> 4hr to 6 hrs.	===> Non-Business Hours 
-		
-			
-		
 		
 		amazon		
 		netflix
@@ -864,7 +860,6 @@ Summary:::
   628  git log -2
   629  git log -1
   630  git log --oneline -2
-  631  git log --twoline -2
   632  clear
   633  git log --oneline -2
   634  git log --stat -1
@@ -907,4 +902,152 @@ Summary:::
   671  git status
   672  history
 		
+
+
+#######################
+Day-5 - 7th July 2023
+#######################	
+
+		GIT Misc. Commands Cont.....
+		
+		git diff --: used to find the diff between the changes.
+		
+		git diff 					== compare between working dir and local repo 
+		
+		git diff --cached 			== compare between staging area and local repo
+		
+		git diff <commit_id> <commit_id>	== between two commits
+		
+		
+		
+		Changes can be revoked using ::
+		
+			git reset :::
 			
+				git reset will change the commit history.
+					It will remove the commits from history.
+				git reset is not recommended in multi. user envi.
+				git reset --hard ==> should be used only if you are sure about what you  are doing.
+						In a single use envi. we can use.
+				git reset will NOT create any new commit point.
+			
+			syntax: git reset <reset_option> <prev.commit_id>
+			
+				git reset --soft  :	
+					==>> will remove the changes from local repo. but the changes will be present in staging area and working directory. The HEAD Pointer will be moved to the specific commit.
+					
+				git reset --mixed  :		(default)	
+					==>> will remove the changes from local repo. and staging area, but the changes will be present in working directory. The HEAD Pointer will be moved to the specific commit.
+
+				git reset --hard  :	
+					==>> will remove the changes from local repo. as well as from staging area and working directory. The HEAD Pointer will be moved to the specific commit.
+					
+			git revert :::
+			
+				git revert <commit_id>
+			
+				This is also used to undo the changes.
+				git revert will create new commit point based upon the revert action.
+				
+			What is Git Commit ?
+			
+				git commit -m <CM1> 		# commit msg are based on Change_Request Id - Project  description.
+				
+				git commit -m "CR1025-Created file1.txt"
+				
+				git commit --amend -m <New Commit Msg>
+				
+				
+		GIT Branching Techniques ::::
+		
+			It help perform parallel development.
+			It help to create a isolated envi. to work on independent changes without impacting others.
+			
+			git init ==> master 
+			
+			
+			How to Create git branch:
+			
+			git switch -c <branch_name>
+			git checkout -b <branch_name>
+			git branch <branch_name>
+			
+		GIT Branching Strategies ::::
+		
+		
+		Local Machine :::
+		
+		Created a git repo ::
+		
+			Default branch is master branch.
+			
+			master branch is considered as prod version of source code.
+
+				feature branch. 
+				
+			mywebapp_repo (master)		
+			
+				sign.java 
+				
+				create feature1 --
+				
+					sign.java 
+			
+				create feature2 --
+				
+					sign.java 			
+			
+			repo1:
+			
+			master 			sign.java
+				feature1		sign.java
+				feature2		sign.java
+				feature3
+
+
+			master 			sign.java			
+				Development_Branch
+					feature1		sign.java
+					feature2		sign.java
+					feature3		sign.java
+
+				
+			master 
+				Integration_Branch(developer1,developer2)
+					developer1
+						feature1
+						feature2
+						feature3			
+
+					developer2
+						feature1
+						feature2
+						feature3				
+					
+			master 			
+				Release_Branch 
+					Integration_Branch1(developer1,developer2)				Team1
+						developer1
+							feature1
+							feature2
+							feature3			
+
+						developer2
+							feature1
+							feature2
+							feature3				
+					
+					Integration_Branch2(developer1,developer2)				Team2
+						developer1
+							feature1
+							feature2
+							feature3			
+
+						developer2
+							feature1
+							feature2
+							feature3				
+		
+		git merge :::			git merge command should be executed from target branch.
+		
+		
