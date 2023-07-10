@@ -1213,6 +1213,168 @@ Day-6 - 10th July 2023
 		squash 
 		remote repo - create merge - pull request...
 		
+  449  mkdir samplerepo1
+  450  cd samplerepo1/
+  451  clear
+  452  git init
+  453  echo "rec1" >> s1.txt
+  454  git add .
+  455  git commit -m "CM1 from master"
+  456  echo "rec2" >> s1.txt
+  457  git add .
+  458  git commit -m "CM2 from master"
+  459  clear
+  460  git log --oneline
+  461  git branch feature1
+  462  git branch feature2
+  463  git branch
+  464  git switch feature1
+  465  git log --oneline
+  466  ls
+  467  cat s1.txt
+  468  vi s1.txt
+  469  git add .
+  470  git commit -m "CM1 from feature1"
+  471  git status
+  472  git log --oneline
+  473  git switch master
+  474  git log --oneline
+  475  cat s1.txt
+  476  git merge feature1
+  477  git log --oneline
+  478  cat s1.txt
+  479  git switch feature2
+  480  cat s1.txt
+  481  echo "record3 from feature2"
+  482  echo "record3 from feature2" >> s1.txt
+  483  git add .
+  484  git commit -m "CM1 from feature2"
+  485  cat s1.txt
+  486  git switch master
+  487  git merge feature2
+  488  cat s1.txt
+  489  vi s1.txt
+  490  git status
+  491  git add .
+  492  git commit -m "fixed Merge Conflict"
+  493  git status
+  494  cat s1.txt
+  495  git log --oneline
+  496  git switch feature2
+  497  git log --oneline
+  498  cd ..
+  499  mkdir samplerepo2
+  500  cd samplerepo2
+  501  git init
+  502  clear
+  503  echo "rec1" >> s1.txt
+  504  git add .
+  505  git commit -m "CM1 from master"
+  506  echo "rec1" >> s2.txt
+  507  git add .
+  508  git commit -m "CM2 from master"
+  509  echo "rec1" >> s3.txt
+  510  git add .
+  511  git commit -m "CM3 from master"
+  512  clear
+  513  git log --oneline
+  514  git branch feature1
+  515  git branch feature2
+  516  git switch feature
+  517  git switch feature1
+  518  git log --oneline
+  519  echo "rec1" >> q1.txt
+  520  git add .
+  521  git commit -m "CM1 from feature1"
+  522  git add .
+  523  ls
+  524  git status
+  525  git log --oneline
+  526  echo "rec1" >> q2.txt
+  527  git add .
+  528  git commit -m "CM2 from feature1"
+  529  clear
+  530  git log --oneline
+  531  git rebase master
+  532  git switch master
+  533  git merge feature1
+  534  clear
+  535  git log --oneline
+  536  git switch feature2
+  537  git log --oneline
+  538  echo "rec1" >> w1.txt
+  539  git add .
+  540  git commit -m "CM from feature2"
+  541  echo "rec1" >> w2.txt
+  542  git add .
+  543  git commit -m "CM1 from feature2"
+  544  git statu
+  545  git status
+  546  git log --oneline
+  547  ls
+  548  git rebase master
+  549  git log --oneline
+  550  ls
+  551  git switch master
+  552  ls
+  553  git merge feature2
+  554  ls
+  555  git log --oneline
+  556  clear
+  557  git log --oneline
+  558  cd ..
+  559  mkdir samplerepo3
+  560  cd samplerepo3
+  561  clear
+  562  git init
+  563  echo "rec1" >> f1.txt
+  564  git add .
+  565  git commit -m "cm1"
+  566  echo "rec1" >> f2.txt
+  567  git add .
+  568  git commit -m "cm2"
+  569  clear
+  570  git switch -c feature1
+  571  git log --oneline
+  572  ls
+  573  echo "rec1" >> s1.txt
+  574  git add .
+  575  git commit -m "f1cm1"
+  576  echo "rec1" >> s2.txt
+  577  git add .
+  578  git commit -m "f1cm2"
+  579  echo "rec1" >> s3.txt
+  580  git add .
+  581  git commit -m "f1cm3"
+  582  echo "rec1" >> s4.txt
+  583  git commit -m "f1cm3"
+  584  git add .
+  585  git commit -m "f1cm4"
+  586  echo "rec1" >> s5.txt
+  587  git add .
+  588  git commit -m "f1cm5"
+  589  clear
+  590  git log --oneline
+  591  git rebase -i HEAD~5
+  592  git log --oneline
+  593  ls
+  594  echo "rec1" >> w1.txt
+  595  git add .
+  596  git commit -m "f1cm1"
+  597  echo "rec1" >> w2.txt
+  598  git add .
+  599  git commit -m "f1cm2"
+  600  echo "rec1" >> w3.txt
+  601  git add .
+  602  git commit -m "f1cm3"
+  603  git log --oneline
+  604  git switch master
+  605  git merge --squash feature1
+  606  git status
+  607  git commit -m "feature1 Changes created 8 files"
+  608  git log --oneline
+  609  ls
+  610  history
 		
 Next :: 
 
