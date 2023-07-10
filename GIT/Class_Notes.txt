@@ -1050,4 +1050,173 @@ Day-5 - 7th July 2023
 		
 		git merge :::			git merge command should be executed from target branch.
 		
+
+#######################
+Day-6 - 10th July 2023
+#######################	
+
+		GIT Branch :::
 		
+		 - Create Branches 
+		 - perform Merge 
+		 - Handling Merge Conflicts
+		 - Best practices 
+		 
+		 
+		Git Merge ::: -- Is used the merge the changes from the current to the target branch.
+						 git merge command shd be executed from the target branch.
+							git switch master
+						git merge feature1 
+						
+		Handling Merge Conflicts :::	Occurs when more than once user/branch try to merge the same file/record in the target branch. 
+		
+		To fix Merge conflict :
+			- Identify the file that is causing merge conflict.
+			- Review that file content and decide which/who's changes has to be retained.
+			- Update the file .
+			- Perform GIT add and commit the changes.
+			
+		--> We should always prevent the merge conflicts....!
+		
+		--> Features to prevent merge conflict.
+		
+		git Rebase :::			git rebase command shd be executed from the current branch.
+		
+			Repo1 : 
+				master 		--> cm1,cm2,cm3
+							
+							Based on feature1 :
+								cm1,cm2,cm3,cm1f1,cm2f1,cm3f1
+							
+							Based on feature2 :							
+								cm1,cm2,cm3,cm1f2,cm2f2,cm3f2,cm1f1,cm2f1,cm3f1
+								
+							Expectation :
+								cm1,cm2,cm3,cm1f1,cm2f1,cm3f1,cm1f2,cm2f2,cm3f2
+							
+								
+					feature1 	--> cm1,cm2,cm3,cm1f1,cm2f1,cm3f1
+					
+									git rebase master
+									git switch master 
+									git merge feature1 :
+			
+					feature2 	--> cm1,cm2,cm3,cm1f2,cm2f2,cm3f2
+
+									git rebase master
+										cm1,cm2,cm3,cm1f1,cm2f1,cm3f1,cm1f2,cm2f2,cm3f2
+										
+									git switch master 
+									git merge feature2 :
+									
+									
+		git squash :::	--> Is used to combine the commits into one commit point.
+		
+			Repo1 ::: 
+				master --> cm1,cm2,cm3 
+				
+							cm1,cm2,cm3,f1c1,f1c2,f1c3,f1c4,f1c5,....................,f1c100
+				
+					feature1 --> cm1,cm2,cm3 
+					
+					git add .
+					
+					git commit 
+
+					feature1 --> cm1,cm2,cm3,f1c1,f1c2,f1c3,f1c4,f1c5,....................,f1c100
+		
+						git switch master
+						git merge feature1 
+			
+		
+		Before Merge/While working in current Branch :::
+		
+			feature1 --> cm1,cm2,cm3,f1c1,f1c2,f1c3,f1c4,f1c5
+			
+						git rebase -i HEAD~5
+						
+						cm1,cm2,cm3,f1c1,CM1F1,f1c1,f1c2,f1c3,f1c4,f1c5
+						
+						git rebase -i HEAD~5
+						cm1,cm2,cm3,f1c1,CM1F1,CM2F1		
+		
+		While Merging :::	
+		
+			feature1 --> cm1,cm2,cm3,f1c1,f1c2,f1c3,f1c4,f1c5
+			
+					git switch master 
+					git merge --squash feature1
+					git commit -m "CM1F1"
+			
+			
+			master cm1,cm2,cm3,REL0723
+			
+				Release_Branch 
+						cm1,cm2,cm3,T1CM1,T2CM1
+
+					Integration_Branch1(developer1,developer2)																			Team1
+								cm1,cm2,cm3,T1d1,T1d2
+
+						developer1 cm1,cm2,cm3,f1d1:c1,2,3,4,5,6,7,8,9,f2d1:c1,2,3,4,5,6,7,8,9,f3d1:c1,2,3,4,5,6,7,8,9
+							feature1 cm1,cm2,cm3,f1d1:c1,2,3,4,5,6,7,8,9
+							feature2 cm1,cm2,cm3,f2d1:c1,2,3,4,5,6,7,8,9
+							feature3 cm1,cm2,cm3,f3d1:c1,2,3,4,5,6,7,8,9			
+
+						developer2 cm1,cm2,cm3,f1d2:c1,2,3,4,5,6,7,8,9,f2d2:c1,2,3,4,5,6,7,8,9,f3d2:c1,2,3,4,5,6,7,8,9	
+							feature1 cm1,cm2,cm3,f1d2:c1,2,3,4,5,6,7,8,9
+							feature2 cm1,cm2,cm3,f2d2:c1,2,3,4,5,6,7,8,9
+							feature3 cm1,cm2,cm3,f3d2:c1,2,3,4,5,6,7,8,9				
+					
+					Integration_Branch2(developer1,developer2)																			Team2
+								cm1,cm2,cm3,T2d1,T2d2
+
+						developer1 cm1,cm2,cm3,f1d1:c1,2,3,4,5,6,7,8,9,f2d1:c1,2,3,4,5,6,7,8,9,f3d1:c1,2,3,4,5,6,7,8,9
+							feature1 cm1,cm2,cm3,f1d1:c1,2,3,4,5,6,7,8,9
+							feature2 cm1,cm2,cm3,f2d1:c1,2,3,4,5,6,7,8,9
+							feature3 cm1,cm2,cm3,f3d1:c1,2,3,4,5,6,7,8,9			
+
+						developer2 cm1,cm2,cm3,f1d2:c1,2,3,4,5,6,7,8,9,f2d2:c1,2,3,4,5,6,7,8,9,f3d2:c1,2,3,4,5,6,7,8,9	
+							feature1 cm1,cm2,cm3,f1d2:c1,2,3,4,5,6,7,8,9
+							feature2 cm1,cm2,cm3,f2d2:c1,2,3,4,5,6,7,8,9
+							feature3 cm1,cm2,cm3,f3d2:c1,2,3,4,5,6,7,8,9	
+					
+		cherrypick 
+		
+		git cherry-pick T1CM1
+		
+		syntax: 
+		
+		git cherry-pick <commit_id> 
+		
+		
+		Handling GIT Remote Repository ::::
+			github - remote repo			GUI 
+			gitlab
+			bitbucket
+			Az Repo 
+			AWS Code Commit 
+			
+			
+			
+		Developers' Workload :::
+		
+			New Project		
+							Create Local Repo & push it to remote repo.
+			
+			Enhancement/Bugfixing
+							Clone the remote repo, make the necessary changes & push the chanages back to remote repo. 
+			
+		
+		git branches 
+		merge 
+		rebase 
+		squash 
+		remote repo - create merge - pull request...
+		
+		
+Next :: 
+
+	Handling Local and Remote Repos. 
+	stash.
+	
+	Jenkins - maven ....
