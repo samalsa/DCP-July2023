@@ -1382,3 +1382,590 @@ Next ::
 	stash.
 	
 	Jenkins - maven ....
+
+
+
+
+#######################
+Day-6 - 10th July 2023
+#######################	
+
+	Git Remote Repositories :::
+	
+	
+		git clone 
+		
+		git pull 
+		
+		git fetch 
+		
+		git remote 
+		
+
+	Jenkins 
+	
+		Developers' Workload :::
+		
+			New Project		
+							Create Local Repo & push it to remote repo.
+			
+			Enhancement/Bugfixing
+							Clone the remote repo, make the necessary changes & push the chanages back to remote repo. 
+							
+							
+				git clone https://github.com/LoksaiETA/dcp3rdjuly-temp1.git
+				
+				
+		github credentials are used to handle remote repo from gitcli/api's
+		
+		
+		loksaieta 						
+		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			--> acts as password to access github
+		
+		
+		git remote add origin https://github.com/LoksaiETA/dcpjuly1-dummyrepo1.git
+		
+		git remote remove origin 
+		
+		
+		git fetch ::		It is just to check if there is any changes present in remote repo. and just update the local repo.
+		
+		git pull ::			It is to check if there is any changes present in remote repo. and update the local repo. & working dir.
+							git pull = git fetch + git merge 
+							
+							
+		git pull (vs) git rebase 
+		
+		As a best practise, before you issue push command execute git pull command. 
+		
+GIT :::
+
+	Git file workflow 
+	
+	git branches 
+	
+	git branching strategies 
+	
+	git remote repository handing 
+	
+	pull request 
+	
+	git stash  
+	
+	
+	Scenario1 :::
+		Repo1 --> 
+		
+			master - cm1,2,3
+			
+				feature1 - cm1,2,3
+					While I am working on this branch - 
+						 - cm1,2,3, -- uncommitted changes
+						 
+				hotfix 
+				
+	
+	stash ==> git stash is used to save the uncommitted changes to a temp location. And make the working tree clean.
+	
+		
+		git stash 
+		
+		git stash list 
+		
+		git stash save "message"
+		
+		git stash apply 			- is used to apply the latest/specific stashed entry back to staging area and this will note remove that entry from stash list.
+		
+		git stash pop				- is used to apply the latest/specific stashed entry back to staging area and remove that entry from stash list.		
+		
+		git stash drop 				- is used to delete/remove the latest/specific entry from the stashed list.
+		
+		git stash clear 			- is used to delete/remove all the entries from the stashed list.
+		
+		git stash branch <branch_name>
+
+  366  mkdir testproj1
+  367  cd testproj1/
+  368  clear
+  369  git clone https://github.com/LoksaiETA/dcp-29-testrepo1.git
+  370
+  371  ls
+  372  cd dcp-29-testrepo1/
+  373  ls
+  374  git status
+  375  clear
+  376  git status
+  377  git remote -v
+  378  echo "record1" >> file1fromlocal
+  379  echo "record2" >> file1fromlocal
+  380  git status
+  381  git add .
+  382  git commit -m "Created file1 from local"
+  383  git status
+  384  git push -u origin main
+  385  clear
+  386  ls
+  387  git branch
+  388  git switch -c localfeature1
+  389  ls
+  390  git status
+  391  echo "rec1" >> localfeature1file
+  392  echo "rec2" >> localfeature1file
+  393  echo "rec3" >> localfeature1file
+  394  clear
+  395  git status
+  396  git add .
+  397  git commit -m "localfeature1filecreated"
+  398  git status
+  399  git push -u origin localfeature1
+  400  clear
+  401  exit
+  402  cat C:\ProgramData\Jenkins\.jenkins\secrets\initialAdminPassword
+  403  cd e:
+  404  cd Sandbox/
+  405  cd Projects/
+  406  ls
+  407  cd Banking-Finance/
+  408  ls
+  409  git init
+  410  git status
+  411  clear
+  412  git add .
+  413  git commit  -m "Banking Proj from Local"
+  414  git status
+  415  git remote add origin https://github.com/LoksaiETA/BankingApp.git
+  416  clear
+  417  git push -u origin master
+  418  cd e:
+  419  cd Sandbox/
+  420  cd Projects/
+  421  cd Banking-Finance-Project/
+  422  ls
+  423  ls -a
+  424  git init
+  425  git add .
+  426  git commit -m "Banking Appln."
+  427  git remote add origin https://github.com/LoksaiETA/SA11-BankingApp.git
+  428  git remote -v
+  429  git push -u origin master
+  430  exit
+  431  d:
+  432  cd e:
+  433  mkdir dcp-3rd-july
+  434  cd dcp-3rd-july/
+  435  pwd
+  436  mkdir repo1
+  437  clear
+  438  ls
+  439  cd repo1/
+  440  pwd
+  441  cd ..
+  442  mkdir repo2
+  443  ls
+  444  pwd
+  445  git --version
+  446  cd e:
+  447  cd dcp-3rd-july/
+  448  ls
+  449  mkdir samplerepo1
+  450  cd samplerepo1/
+  451  clear
+  452  git init
+  453  echo "rec1" >> s1.txt
+  454  git add .
+  455  git commit -m "CM1 from master"
+  456  echo "rec2" >> s1.txt
+  457  git add .
+  458  git commit -m "CM2 from master"
+  459  clear
+  460  git log --oneline
+  461  git branch feature1
+  462  git branch feature2
+  463  git branch
+  464  git switch feature1
+  465  git log --oneline
+  466  ls
+  467  cat s1.txt
+  468  vi s1.txt
+  469  git add .
+  470  git commit -m "CM1 from feature1"
+  471  git status
+  472  git log --oneline
+  473  git switch master
+  474  git log --oneline
+  475  cat s1.txt
+  476  git merge feature1
+  477  git log --oneline
+  478  cat s1.txt
+  479  git switch feature2
+  480  cat s1.txt
+  481  echo "record3 from feature2"
+  482  echo "record3 from feature2" >> s1.txt
+  483  git add .
+  484  git commit -m "CM1 from feature2"
+  485  cat s1.txt
+  486  git switch master
+  487  git merge feature2
+  488  cat s1.txt
+  489  vi s1.txt
+  490  git status
+  491  git add .
+  492  git commit -m "fixed Merge Conflict"
+  493  git status
+  494  cat s1.txt
+  495  git log --oneline
+  496  git switch feature2
+  497  git log --oneline
+  498  cd ..
+  499  mkdir samplerepo2
+  500  cd samplerepo2
+  501  git init
+  502  clear
+  503  echo "rec1" >> s1.txt
+  504  git add .
+  505  git commit -m "CM1 from master"
+  506  echo "rec1" >> s2.txt
+  507  git add .
+  508  git commit -m "CM2 from master"
+  509  echo "rec1" >> s3.txt
+  510  git add .
+  511  git commit -m "CM3 from master"
+  512  clear
+  513  git log --oneline
+  514  git branch feature1
+  515  git branch feature2
+  516  git switch feature
+  517  git switch feature1
+  518  git log --oneline
+  519  echo "rec1" >> q1.txt
+  520  git add .
+  521  git commit -m "CM1 from feature1"
+  522  git add .
+  523  ls
+  524  git status
+  525  git log --oneline
+  526  echo "rec1" >> q2.txt
+  527  git add .
+  528  git commit -m "CM2 from feature1"
+  529  clear
+  530  git log --oneline
+  531  git rebase master
+  532  git switch master
+  533  git merge feature1
+  534  clear
+  535  git log --oneline
+  536  git switch feature2
+  537  git log --oneline
+  538  echo "rec1" >> w1.txt
+  539  git add .
+  540  git commit -m "CM from feature2"
+  541  echo "rec1" >> w2.txt
+  542  git add .
+  543  git commit -m "CM1 from feature2"
+  544  git statu
+  545  git status
+  546  git log --oneline
+  547  ls
+  548  git rebase master
+  549  git log --oneline
+  550  ls
+  551  git switch master
+  552  ls
+  553  git merge feature2
+  554  ls
+  555  git log --oneline
+  556  clear
+  557  git log --oneline
+  558  cd ..
+  559  mkdir samplerepo3
+  560  cd samplerepo3
+  561  clear
+  562  git init
+  563  echo "rec1" >> f1.txt
+  564  git add .
+  565  git commit -m "cm1"
+  566  echo "rec1" >> f2.txt
+  567  git add .
+  568  git commit -m "cm2"
+  569  clear
+  570  git switch -c feature1
+  571  git log --oneline
+  572  ls
+  573  echo "rec1" >> s1.txt
+  574  git add .
+  575  git commit -m "f1cm1"
+  576  echo "rec1" >> s2.txt
+  577  git add .
+  578  git commit -m "f1cm2"
+  579  echo "rec1" >> s3.txt
+  580  git add .
+  581  git commit -m "f1cm3"
+  582  echo "rec1" >> s4.txt
+  583  git commit -m "f1cm3"
+  584  git add .
+  585  git commit -m "f1cm4"
+  586  echo "rec1" >> s5.txt
+  587  git add .
+  588  git commit -m "f1cm5"
+  589  clear
+  590  git log --oneline
+  591  git rebase -i HEAD~5
+  592  git log --oneline
+  593  ls
+  594  echo "rec1" >> w1.txt
+  595  git add .
+  596  git commit -m "f1cm1"
+  597  echo "rec1" >> w2.txt
+  598  git add .
+  599  git commit -m "f1cm2"
+  600  echo "rec1" >> w3.txt
+  601  git add .
+  602  git commit -m "f1cm3"
+  603  git log --oneline
+  604  git switch master
+  605  git merge --squash feature1
+  606  git status
+  607  git commit -m "feature1 Changes created 8 files"
+  608  git log --oneline
+  609  ls
+  610  history
+  611  clear
+  612  cd ..
+  613  mkdir temprepo1
+  614  cd temprepo1/
+  615  ls
+  616  ls -a
+  617  git clone https://github.com/LoksaiETA/dcp3rdjuly-temp1.git
+  618  clear
+  619  ls
+  620  cd dcp3rdjuly-temp1/
+  621  ls
+  622  git status
+  623  git remote -v
+  624  ls
+  625  git log --oneline
+  626  echo "rec1" >> file1fromlocal
+  627  git add .
+  628  git commit -m "CM1 from Local"
+  629  git status
+  630  git log --oneline
+  631  clear
+  632  git push -u origin main
+  633  git log --oneline
+  634  echo "rec1" >> test1.txt
+  635  git add .
+  636  git commit -m "CM2 from local"
+  637  git log --oneline
+  638  git push -u origin master
+  639  git push -u origin main
+  640  clear
+  641  ls
+  642  git branch
+  643  git switch -c localfeature1
+  644  ls
+  645  echo "rec1" >> feature1file
+  646  echo "rec2" >> feature1file
+  647  echo "rec3" >> feature1file
+  648  git add .
+  649  git commit -m "feature1-CM1"
+  650  git log --oneline
+  651  git push -u origin localfeature1
+  652  git
+  653  clear
+  654  cd ..
+  655  cd ..
+  656  mkdir temprepo2
+  657  cd temprepo2
+  658  ls
+  659  git init
+  660  echo "rec1" >> file1.txt
+  661  git add .
+  662  git commit -m "CM1 from localmaster"
+  663  git status
+  664  git remote -v
+  665  git remote add origin https://github.com/LoksaiETA/dcpjuly1-dummyrepo1.git
+  666  git remote -v
+  667  git status
+  668  git remote remove origin https://github.com/LoksaiETA/dcpjuly1-dummyrepo1.git
+  669  git remote -v
+  670  git remote remove origin
+  671  git remote -v
+  672  git branch -M main
+  673  git branch -M master
+  674  git push -u origin master
+  675  clear
+  676  git remote -v
+  677  ls
+  678  git remote add origin https://github.com/LoksaiETA/dcpjuly1-dummyrepo1.git
+  679  git remote -v
+  680  git push -u origin master
+  681  git status
+  682  git log --oneline
+  683  git fetch
+  684  ls
+  685  git ls-files
+  686  git pull
+  687  ls
+  688  git statsu
+  689  git status
+  690  git status
+  691  git pull
+  692  clear
+  693  git remote remove origin
+  694  clear
+  695  git branch
+  696  git log --oneline
+  697  git switch -c feature1
+  698  echo "rec1" >> file3.txt
+  699  echo "rec3" >> file3.txt
+  700  git add .
+  701  echo "rec2" >> file3.txt
+  702  git add .
+  703  git status
+  704  git switch master
+  705  git status
+  706  git switch feature1
+  707  git status
+  708  git stash
+  709  git status
+  710  ls
+  711  git switch master
+  712  git switch feature1
+  713  git stash lsit
+  714  git stash list
+  715  echo "rec1" >> tempfile1.txt
+  716  git add .
+  717  git stash
+  718  git stash list
+  719  git show stash@{0}
+  720  echo "rec1" >> tempfile2.txt
+  721  git add .
+  722  git stash list
+  723  git stast save "created tempfile2.txt"
+  724  git stash save "created tempfile2.txt"
+  725  git stash list
+  726  git stash apply
+  727  git status
+  728  git commit -m "cm2"
+  729  git status
+  730  git stash list
+  731  git stash drop
+  732  git stash list
+  733  git stash pop
+  734  git status
+  735  git stash list
+  736  git stash save "stash1"
+  737  git stash list
+  738  git stash clear
+  739  git stash list
+  740  clear
+  741  git status
+  742  echo "rec" > q1.txt
+  743  echo "rec" > q1.txt
+  744  echo "rec" >> q1.txt
+  745  echo "rec" >> q1.txt
+  746  echo "rec" >> q1.txt
+  747  echo "rec" >> q1.txt
+  748  cat q1.txt
+  749  echo "record" > q1.txt
+  750  cat q1.txt
+  751  echo "record" >> q1.txt
+  752  echo "record" >> q1.txt
+  753  echo "record" >> q1.txt
+  754  echo "record" >> q1.txt
+  755  echo "record" >> q1.txt
+  756  echo "record" >> q1.txt
+  757  git status
+  758  git add .
+  759  git stash branch featuretemp1
+  760  clear
+  761  git stash
+  762  clear
+  763  git stash branch feature1bkup1
+  764  git branch
+  765  history
+
+
+Jenkins ::: 		
+
+		Build Orchetration Tool -- Jenkins is opensource - It is a Master/Slave Architecture 
+		
+		Continuous Development
+		
+		Continuous Integration
+		
+		Continuous Delivery/Deployment
+		
+		DevOps Engineer :: role in jenkins :::
+		
+		Developers' Perspective :
+		
+			Developers are just consumers.
+		
+		
+		DevOps Perspective :
+		
+			Jenkins Administration & Management :::
+			
+				- Installation of Jenkins 
+				- Managing Plugins 
+				- Manage Users
+				- Manage Users' Access Control 
+				- Manage Tools 
+				- Create and Configure Jenkins Master/Slave Architecture
+				- Manage Jenkins Nodes/Slave Machines  
+				- Manage Jenkins configurations and default setup
+				- Create Jenkins CI/CD Pipelines
+				- Onboard applications to Jenkins
+				- Troubleshooting 
+				- Remote Server Handling
+				
+		Use Case ?? Why to use jenkins :
+		
+		
+	
+		Application :::
+		
+			Java_Project_WebAppln --> 
+			
+				src_code 
+				commit this src_code in github repo.
+				
+			src_code --> commit to git hub 			# Done by developers
+			
+			build 			Build tool - Maven -
+						Maven is one of the build tools used to compile the src code,create artifacts,perform automated UT 
+						Maven Goal - clean, test, build, package 
+						
+				compile the src code 
+				create artifacts 
+			perform unit testing
+			publish the appln to target environment ( QA )
+			
+		Working with Jenkins :::
+		
+			Create AWS EC2 Instances(VM) :::
+			
+			ubuntu/amazon linux 2
+			
+			AMI
+			
+			
+			AWS Cloud 
+			
+				Regions 	Locations 
+				
+					Availability Zones (Data Centres)
+					
+				Linux Distributions ::
+				
+					Fedora
+					RHEL
+					Centos
+					Debian - Ubuntu
+					
+					
+			1 VM 	--> run it for 750 hrs free of cost.
+			
+			10 VM 	--> run these 10 VMs for 75 Hrs free of cost.
+			
