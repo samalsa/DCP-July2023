@@ -1,0 +1,78 @@
+			
+#######################
+Day-8 - 12th July 2023
+#######################	
+
+	Install Jenkins ==> https://www.jenkins.io/doc/book/installing/
+	
+	Linux - Package Manager 	- used to install and manage the software packages in Linux
+		apt-get 
+		yum
+		rpm
+		dnf 
+		
+		
+	1. Launch AWS Ubuntu Machine.
+			--> Goto security groups and edit inbound rule.
+			
+	1.1 Connect to AWS EC2 Instance :
+			EC2 Instance Connect 
+			SSH Clients 	--> MobaXterm/Putty
+			Terminal
+			
+	
+	2. Install Jenkins 					---> It run as a web service - in its default port 8080
+			
+	3. Configure Jenkins.
+
+Install JDK :
+
+sudo apt update
+sudo apt install openjdk-17-jre
+java -version		
+
+			
+Install Jenkins :
+
+curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | sudo tee \
+  /usr/share/keyrings/jenkins-keyring.asc > /dev/null
+echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
+  https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
+  /etc/apt/sources.list.d/jenkins.list > /dev/null
+sudo apt-get update
+sudo apt-get install jenkins	
+
+
+systemctl status jenkins
+systemctl stop jenkins
+systemctl start jenkins
+systemctl restart jenkins
+systemctl enable jenkins
+
+
+--> Post Installation Activities for Jenkins .
+		- Access it thru external Ip address and port 8080
+		- Install all the default components
+		
+	Jenkins Plugins :::
+		
+			Plugins are extensions to perform any action in jenkins.
+			
+	
+	Managing Plugins  ::
+	
+	
+	Jenkins Project/Job
+			Projectt/Jobs :
+				Free-Style Project 
+				Pipeline Project 
+					Pipeline Scripts written using Groovy Scripting Lang.
+						- Scripted Pipeline 
+						- Declarative Pipeline
+					
+Summary :
+				- Installation of Jenkins 
+				- Managing Plugins 
+				- Manage Users
+				- Manage Users' Access Control 
+				- Create a freestyle project and check the console output.
