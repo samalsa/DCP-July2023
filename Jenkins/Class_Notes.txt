@@ -76,3 +76,219 @@ Summary :
 				- Manage Users
 				- Manage Users' Access Control 
 				- Create a freestyle project and check the console output.
+				
+
+#######################
+Day-9 - 13th July 2023
+#######################	
+
+				Jenkins Project/Job
+						Projectt/Jobs :
+							Free-Style Project 
+							Pipeline Project 
+								Pipeline Scripts written using Groovy Scripting Lang.
+									- Scripted Pipeline 
+									- Declarative Pipeline			- 
+
+				Handling Variables/Parameters
+				
+					Jenkins Variables:
+						- Environment/SYSTEM/JOB Variables						
+						- User Defined Variables
+					
+				Create Jenkins Pipeline
+				5 Environments - to deploy my appln. in 5 envi.
+				
+				
+				Pipeline Project 
+					Pipeline Scripts written using Groovy Scripting Lang.
+						- Scripted Pipeline 
+								
+- Declarative Pipeline					
+
+
+			src_code --> commit to git hub 			# Done by developers
+			
+			build 			Build tool - Maven -
+						Maven is one of the build tools used to compile the src code,create artifacts,perform automated UT 
+						Maven Goal - clean, test, build, package 
+						
+				compile the src code 
+				create artifacts 
+			perform unit testing
+			publish the appln to target environment ( QA )
+	
+
+
+				
+pipeline {
+    agent any
+
+    stages {
+        stage('SCM Checkout') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+        stage('Build') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+        stage('Deploy the artifacts to QA Envi.') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+        stage('QA Automated Testing') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+        stage('Deploy the artifacts to UAT Envi.') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+        stage('UAT Automated Testing') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+        stage('Deploy the artifacts to PROD Envi.') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+    }
+}		
+
+
+
+
+
+pipeline {
+    agent any
+
+    tools {
+        // Install the Maven version configured as "M3" and add it to the path.
+        maven "M3"
+    }
+
+    stages {
+        stage('Build') {
+            steps {
+                // Get some code from a GitHub repository
+                git 'https://github.com/jglick/simple-maven-project-with-tests.git'
+
+                // Run Maven on a Unix agent.
+                sh "mvn -Dmaven.test.failure.ignore=true clean package"
+
+                // To run Maven on a Windows agent, use
+                // bat "mvn -Dmaven.test.failure.ignore=true clean package"
+            }
+
+            post {
+                // If Maven was able to run the tests, even if some of the test
+                // failed, record the test results and archive the jar file.
+                success {
+                    junit '**/target/surefire-reports/TEST-*.xml'
+                    archiveArtifacts 'target/*.jar'
+                }
+            }
+        }
+    }
+}
+	
+	
+	
+Eg. for Scripted Pipeline :
+
+node {
+    def mvnHome
+    stage('Preparation') { // for display purposes
+        // Get some code from a GitHub repository
+        git 'https://github.com/jglick/simple-maven-project-with-tests.git'
+        // Get the Maven tool.
+        // ** NOTE: This 'M3' Maven tool must be configured
+        // **       in the global configuration.
+        mvnHome = tool 'M3'
+    }
+    stage('Build') {
+        // Run the maven build
+        withEnv(["MVN_HOME=$mvnHome"]) {
+            if (isUnix()) {
+                sh '"$MVN_HOME/bin/mvn" -Dmaven.test.failure.ignore clean package'
+            } else {
+                bat(/"%MVN_HOME%\bin\mvn" -Dmaven.test.failure.ignore clean package/)
+            }
+        }
+    }
+    stage('Results') {
+        junit '**/target/surefire-reports/TEST-*.xml'
+        archiveArtifacts 'target/*.jar'
+    }
+}
+
+
+python script/shell script/yaml scripts/groovy scripts
+
+Jenkins ::: Groovy 
+
+Az Pipeline			yaml scripts.
+AWS Codepipeline 
+gitlab-ci 
+
+
+
+Jenkins Master-Slave Architecture :::
+
+		Jenkins_Master 	VM 		--> Is used to create/Manage Jenkins Jobs. And it is used to Schedule the Jobs to Slave Nodes.
+			Slave1			--> Java Application		workspace 	
+			Slave2			--> Python Application
+			Slave3			--> Node JS
+			Slave4			--> Angular
+		
+				- Create and Configure Jenkins Master/Slave Architecture
+				- Manage Jenkins Nodes/Slave Machines 
+				
+		
+		Jenkins_Master 
+		Jenkins_Slave_Node1
+				Install git,jdk,maven 
+				
+				Create the user
+					Authentication::
+						password based auth.
+						token based auth.
+						key based auth. 
+							private key & Public keys
+						passwordless auth.
+				SSH Connection
+
+
+		Launch 1 VM for Slave Node1
+		
+		
+		Jenkins node Configuration!
+
+
+		Next ::: 
+
+pipeline {
+    agent { label 'slave1' }
+
+    stages {
+        stage('SCM Checkout') {
+            steps {
+                echo 'Perform SM Checkout'
+				git 'https://github.com/LoksaiETA/Java-mvn-app2'
+            }
+        }
+        stage('Build') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+    }
+}		
