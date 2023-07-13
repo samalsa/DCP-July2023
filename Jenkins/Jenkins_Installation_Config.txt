@@ -1,0 +1,67 @@
+Install Jenkins on Ubuntu :::
+
+https://www.jenkins.io/doc/book/installing/linux/
+
+
+Update the Debian apt repositories, install OpenJDK 11, and check the installation with the commands:
+
+sudo apt update
+sudo apt install openjdk-11-jre
+java -version
+
+
+curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | sudo tee \
+  /usr/share/keyrings/jenkins-keyring.asc > /dev/null
+echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
+  https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
+  /etc/apt/sources.list.d/jenkins.list > /dev/null
+sudo apt-get update
+sudo apt-get install jenkins
+
+
+
+
+
+
+#Setup slave node :::
+
+#Install java OpenJDK, GIT, MAVEN on Ubuntu Slave Machine:
+
+git --version
+
+sudo apt install git -y 
+
+sudo apt update
+sudo apt install openjdk-11-jre
+java -version
+
+#https://maven.apache.org/install.html
+
+sudo apt install maven -y
+
+#Adding a New User for Slave :
+
+useradd -m -s /bin/bash devopsadmin
+
+su - devopsadmin
+
+ssh-keygen -t rsa -b 4096 -m PEM
+
+ls ~/.ssh 
+
+#You should see following two files:
+
+#id_rsa - private key
+#id_rsa.pub - public
+
+#cat id_rsa & copy the private key and paste it into jenkins node config. enter private key directly field.  Then,
+cat id_rsa.pub > authorized_keys
+
+chown -R devopsadmin /home/devopsadmin/.ssh
+chmod 600 /home/devopsadmin/.ssh/authorized_keys
+chmod 700 /home/devopsadmin/.ssh
+
+
+
+
+*******************************************************************************************************
