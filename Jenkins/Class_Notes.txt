@@ -292,3 +292,123 @@ pipeline {
         }
     }
 }		
+
+#######################
+Day-10 - 14th July 2023
+#######################	
+
+		Jenkins - CI/CD Pipeline 
+		Test Server Configuration using Tomcat
+		Integration of test server
+		Build Triggers
+		
+		
+pipeline {
+    agent { label 'slave1' }
+
+    tools {
+        // Install the Maven version configured as "M3" and add it to the path.
+        maven "maven-3.6.3"
+    }
+	
+    stages {
+        stage('SCM Checkout') {
+            steps {
+                echo 'Perform SM Checkout'
+				git 'https://github.com/LoksaiETA/Java-mvn-app2'
+            }
+        }
+        stage('Build') {
+            steps {
+                echo 'Perform Build'
+				sh "mvn -Dmaven.test.failure.ignore=true clean package"
+            }
+        }
+    }
+}
+
+Maven --> 
+
+	pom.xml file 
+	MAVEN Repository
+	
+	Maven Build --> Using Maven goals 
+	
+		clean
+		
+		build
+		test
+		package 
+		
+	target/*.war			==> Artifactory Library/Repositories - JFrog Artifactory
+	
+	
+
+	CICD
+
+pipeline {
+    agent { label 'slave1' }
+
+    tools {
+        // Install the Maven version configured as "M3" and add it to the path.
+        maven "maven-3.6.3"
+    }
+	
+    stages {
+        stage('SCM Checkout') {
+            steps {
+                echo 'Perform SM Checkout'
+				git 'https://github.com/LoksaiETA/Java-mvn-app2'
+            }
+        }
+        stage('Build') {
+            steps {
+                echo 'Perform Build'
+				sh "mvn -Dmaven.test.failure.ignore=true clean package"
+            }
+        }
+    }
+}	
+
+
+	code(artifacts) promotion/publish/deploy/ 
+
+	Non-Prod							PROD (release)
+	
+	DEV 
+	QA 
+	UAT 				===> 			prod servers 
+	
+
+	Launch QA Server 
+		Install Tomcat/nginx - Web Application Server 	--> Run as a service in default port 8080
+		
+		
+	Deployment ???
+	
+	
+		Copying the artifacts from source server to target server :::
+		
+		
+		Source - Jenkins_Slave1	==> target/*.war 
+		
+		Target - QA Server 		==> /opt/tomcat/webapps/*.war
+		
+		Perform this deployment as a devopsadmin user.
+		
+	Connect/Attach Tomcat server to Jenkins Master ::
+	
+		Install Publish over SSH Plugins to connect any remote server to jenkins and share the artifacts.
+		
+		
+Summary :::
+
+		Create CICD pipeline -- perform shcm checkout/build/Create artifacts using Maven 
+		Launch QA Server 
+			Install Tomcat, with valid user 
+		Install Publish over ssh plugins in jenkins master.
+		
+Next :::
+
+	Connect to tomcat using Jenkins Master.
+		
