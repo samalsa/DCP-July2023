@@ -1417,10 +1417,7 @@ Day-7 - 11th July 2023
 				
 				
 		github credentials are used to handle remote repo from gitcli/api's
-		
-		
-		loksaieta 						
-		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			--> acts as password to access github
+	
 		
 		
 		git remote add origin https://github.com/LoksaiETA/dcpjuly1-dummyrepo1.git
