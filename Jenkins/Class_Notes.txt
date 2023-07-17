@@ -412,3 +412,136 @@ Next :::
 
 	Connect to tomcat using Jenkins Master.
 		
+		
+		
+		
+		
+
+#######################
+Day-11 - 17th July 2023
+#######################			
+		
+		Launch QA Server  -
+		Hosted Server/Target Server (VM)
+			Install Tomcat/nginx(80) - Web Application Server 	--> Run as a service in default port 8080
+			
+			
+		Configure Tomcat Server ::
+		How to Connect the tomcat server with Jenkins Master.
+		
+		
+		Create the CICD Pipeline
+		Build Triggers 
+		Email Notifications.
+		
+		Build Triggers ::
+			Used to automate the Builds :::
+			
+			Build Periodic:
+					Is used to trigger the job based upon the schedule/crontab 
+					This trigger is not related to source code changes. 
+					
+			PollSCM:
+					Based upon the source code changes, we can schedule/crontab the jobs.
+					Use Case1 :
+						4 hrs once - I want to run my QA Test job.
+						8AM,12noon
+						between 8 and 12 , if there is any changes happened in the src_code, then only this will trigger the job.
+					
+					Use Case2 :
+						Trigger the job for every 10 mins, only if there is any changes in source code.
+					
+			Test Cycle:::			
+				app-team1,2,3,4,5 ==> project.				
+				src_code. 4 hrs -- 8 am and 12 noon 12 noon test job will be triggered.
+				
+			GITHUB Webhook :
+					Is used to trigger the build job as soon as there is a change in src_code repo.
+					For every src_code change, build will get triggered. 
+					
+					Configure - github webhook in src_code Repo.
+					
+				http://15.206.127.38:8080/github-webhook/	
+				
+				http://52.66.197.160:8080/github-webhook/
+				
+		
+		Email Notifications:::
+		
+			Jenkins :
+					
+pipeline {
+    agent { label 'slave1' }
+
+    tools {
+        // Install the Maven version configured as "M3" and add it to the path.
+        maven "maven-3.6.3"
+    }
+	
+    stages {
+        stage('SCM Checkout') {
+            steps {
+                echo 'Perform SM Checkout'
+				git 'https://github.com/LoksaiETA/Java-mvn-app2'
+            }
+        }
+        stage('Build') {
+            steps {
+                echo 'Perform Build'
+				sh "mvn -Dmaven.test.failure.ignore=true clean package"
+            }
+              post {
+                failure {
+                  sh "echo 'Send mail on failure'"
+					mail bcc: '', body: "Please go to ${BUILD_URL} and verify the build", cc: 'l3@gmail.com', from: '', replyTo: '', subject: 'Build Notification', to: 'l3@gmail.com'
+                }
+              }
+        }
+        stage('Deploy to Tomcat_Server') {
+            steps {
+		script {
+			sshPublisher(publishers: [sshPublisherDesc(configName: 'TomcatAppServer', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '.', remoteDirectorySDF: false, removePrefix: 'target/', sourceFiles: 'target/mvn-hello-world.war')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])			
+			}
+            }
+		  post {
+			success {
+			  sh "echo 'Send mail on success'"
+				mail bcc: '', body: "Please go to ${BUILD_URL} and verify the build", cc: 'l3@gmail.com', from: '', replyTo: '', subject: 'Build Notification', to: 'l3@gmail.com'
+			}
+			failure {
+			  sh "echo 'Send mail on failure'"
+				mail bcc: '', body: "Please go to ${BUILD_URL} and verify the build", cc: 'l3@gmail.com', from: '', replyTo: '', subject: 'Build Notification', to: 'l3@gmail.com'
+			}
+		  }
+
+		}		
+    }
+}	
+	
+			Jenkins Notifications ::::
+			
+				When the job/stage --> Successful/Failure/Unstable/Aborted
+
+Email Notification Plugins :::
+
+SMTP Server :
+smtp.gmail.com
+
+SMTP Authentication
+
+SMTP Port :: 465
+
+Login to Gmail :::
+
+Click Account Settings
+
+select Security 
+
+MFA --> mobile#
+App Password = 16
+What ? window
+Which Appln - email
+
+
+Next Ansible :::
+
