@@ -1,0 +1,77 @@
+
+
+
+#######################
+Day-12 - 18th July 2023
+#######################	
+
+
+			Configuration Management System(CMS) using Ansible
+			
+				Cdevelopment,CI,CD/deployment 
+				
+			Infra-Structure Provisioning
+			Infra-Structure Configuration
+			
+				In Monolith Architecture - Dedicated Environments -- DEV/QA/UAT/PROD 
+				
+				In Micro-Service Based Architecture - 100+ Build and Test Servers 
+				
+				Jenkins_Master -- VM
+					Jenkins_SLave -- VM 
+				
+				Test_Servers
+				
+				
+				To provision n no. of servers / configurations, we need IAC --> CMS
+				
+				CMS is one of the IAC Tools  -- Infra-Structure As Code.
+				
+				Infra-Structure Provisioning			--> Terraform 
+				Configuration Management				--> Ansible				-- *.yaml scripts --> key,value pair.
+				
+				
+			    configmvnbuildserver.sh
+					yum install git -y 
+					yum install jdk1.11 y 
+					yum install maven -y 
+					
+				Ansible :::
+				
+						Ansible Architecture
+						
+						Ansible Inventory file 
+						Ansible Config file
+						Ansible Modules 
+						Ansible adhoc Commands / Playbook
+						
+				Launch 3 VMs in aws cloud platform :
+					
+					VM(1 + 2) 
+					
+				Authentication Methods :::
+				
+					ssh key based authentication :::
+					
+						Jenkins_Master 
+						
+						Jenkins_Slave			create key pair & shared the private key to Jenkins_Master 
+						
+					
+				In Ansible Architecture :::
+
+						Ansible Controller ::: Create key pair in AC, and share the public key of AC to ANs
+						
+							AN1				
+							AN2
+							AN3...
+				
+				
+				Ansible Adhoc Commands :::
+				
+Summary : 
+
+		Ansible Architecture
+		Installation & Configuration of AC & ANs 
+		How to maintain Ansible Inventory files
+		How to work on Ansible Modules using Adhoc Commands 
