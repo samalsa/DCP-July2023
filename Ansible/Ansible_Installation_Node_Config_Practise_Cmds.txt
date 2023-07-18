@@ -1,0 +1,151 @@
+Ansible Installation & Configurations:
+
+Launch 3 EC2 Instances... 1 for Ansible Controller & 2 as Nodes
+
+SSH connections :::
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#Login to Ansible Node1 & Node2. Perform below activities:
+
+#Add User in Ansible Nodes : 
+
+sudo -i
+
+useradd -m -d /home/ansibleadmin ansibleadmin
+
+#useradd ansibleadmin
+
+passwd ansibleadmin
+
+#Enter New Password:
+#Confirm Password:
+
+#Goto:
+
+vi /etc/ssh/sshd_config
+
+#Enable Password Authentication to Yes and save the file
+#Execute Below command to update the changes.
+
+service sshd reload
+
+#As a root user edit below file:
+
+$ visudo
+
+#add the below mentioned line in the file and save it.
+ 
+#ansibleadmin ALL=(ALL) NOPASSWD: ALL
+
+su - ansibleadmin
+
+ls -a 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+#Login to Ansible Controller:
+
+sudo -i
+
+#Install epel Package :
+#Install Ansible 
+
+amazon-linux-extras install epel -y
+amazon-linux-extras install ansible2 -y
+
+sudo apt install ansible2 -y
+
+#go to /etc/ansible
+
+#host - inventory file
+#config
+#roles 
+
+#Add User in Ansible Controller : 
+
+
+useradd -m -d /home/devopsadmin devopsadmin
+
+#useradd devopsadmin
+
+
+chown -R devopsadmin:devopsadmin /etc/ansible
+
+su - devopsadmin	
+ssh-keygen
+
+ssh-copy-id ansibleadmin@172.31.4.235
+ssh-copy-id ansibleadmin@172.31.1.218
+
+ssh ansibleadmin@172.31.4.235
+ssh ansibleadmin@172.31.1.218
+
+###update vi etc/ansible/host
+
+[testnodes]
+samplenode1 ansible_ssh_host=172.31.4.235 ansible_ssh_user=ansibleadmin
+samplenode2 ansible_ssh_host=172.31.1.218 ansible_ssh_user=ansibleadmin
+
+#**************************************************************************************************************************
+#hosts file is the default Inventory file for ansible 
+#**************************************************************************************************************************
+#Access thru Ansible Controller :
+#**************************************************************************************************************************
+
+ansible <hosts_name> -m <module_name> -i <inventory_file>
+
+ansible testnodes -m ping
+
+ansible samplenode1 -m ping -i inventory1
+
+#host machines can be identified using :
+#all | group_name | individual_host_name
+
+
+###update vi /etc/ansible/host
+
+[testnodes]
+samplenode1 ansible_ssh_host=172.31.41.32 ansible_ssh_user=ansibleadmin
+samplenode2 ansible_ssh_host=172.31.39.17 ansible_ssh_user=ansibleadmin
+
+
+/etc/ansible/dev_inventory
+
+[devnodes]
+sampledevnode1 ansible_ssh_host=172.31.41.32 ansible_ssh_user=ansibleadmin
+sampledevnode2 ansible_ssh_host=172.31.39.17 ansible_ssh_user=ansibleadmin
+
+ansible devnodes -m ping -i /etc/ansible/dev_inventory
+
+
+##################################################################################
+
+#**************************************************************************************************************************
+#Access thru Ansible Controller :
+#**************************************************************************************************************************
+Ansible Modules: Eg.: 
+ansible testnodes -m ping
+
+ansible all -m ping ### will ping all hosts from /etc/ansible/hosts file
+
+ansible samplenode1 -m ping
+ansible samplenode2 -m ping
+
+#or using user defined Inventory file
+#ansible ansible-node1 -m ping -i myinventoryfile.txt
+
+
+ansible samplenode1 -m ping -i myinventoryfile.txt
+
+#**************************************************************************************************************************
+
+ansible samplenode2 -m ping
+ANSIBLE_KEEP_REMOTE_FILES=1 ansible samplenode1 -m shell -a "sleep 5 ; echo 'hi'"
+
+ANSIBLE_KEEP_REMOTE_FILES=1 ansible samplenode1 -m shell -a "uptime"
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Ansible Facts!
+
+ansible samplenode1 -m setup
+ansible samplenode1 -m setup -a "filter=ansible_mounts"
