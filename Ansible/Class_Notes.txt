@@ -75,3 +75,49 @@ Summary :
 		Installation & Configuration of AC & ANs 
 		How to maintain Ansible Inventory files
 		How to work on Ansible Modules using Adhoc Commands 
+		
+#######################
+Day-13 - 19th July 2023
+#######################	
+
+		Ansible Modules 
+		Ansible Playbooks
+		Ansible Misc.
+		
+		
+		Ansible Playbooks::		should be reusable!!!
+		
+		name 
+		host
+		task 
+			modules 
+				arguments
+				
+				
+		Variables :
+		
+			System Variables
+			User Defined Variables 
+				
+				
+		task:
+			1. install tomcat 
+			2. start tomcat 
+			
+			
+		Ansible Roles ::::
+		
+			It is used to organize the Ansible Components :::
+
+---
+ - hosts: samplenode1
+   roles:
+     - mytestrole1
+
+
+---
+
+- name: printmsg
+  debug:
+    msg: "Hello"
+	
