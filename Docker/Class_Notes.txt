@@ -1,0 +1,121 @@
+	
+########################
+Day-14 - 20th July 2023
+########################
+
+		Containerization using Docker !!!!
+		
+		Container ????
+		
+		Container Architecture
+		Components of Container Engine
+		
+		Why we need Containers ?????
+		
+			What is Virtual Machine ?
+			
+		Cloud Services AWS 
+		
+		Create VMs --> 
+		
+		
+		Infra-Structure Perspective :::
+		
+		Jenkins_Master 			VM
+			Jenkins_Slave1			Java 
+			Jenkins_Slave2			python 
+			Jenkins_Slave3			.Net
+			Jenkins_Slave4
+			Jenkins_Slave5
+			Jenkins_Slave6
+
+		Jenkins_Master 			VM
+			Jenkins_BuildServer		--> Container Engine --> Create Containers (1,2,3) 
+			
+		VM (vs) Containers :::
+
+		Containers ::::
+			Are OS Level Virtualization Tool 
+			Are used to run the task/Applcation not Operating System
+			Containers are light weight
+			Faster in access 
+			Release the memory once the task/App is released
+			
+			Kernal ::
+				CGroups/Namespace 
+			
+		Virtual Machine ::::
+			Are Hardlevel Virtualization
+			Are used to run the OS and Applications.
+			It is heavy weight components.
+			Slower in access 
+			Will not release the memory even the task is released.
+			
+			
+		Development/Deployment Perspective ::::
+		
+			Container is a package of application with all its dependencies.
+			
+		Environment :::
+		
+			Dev 		--> Create the src_code, -- build -- Create Artifacts --> test the application artifacts(*.war_V1)
+							Tomcat Server(jdk11,tomcat9) --> to test application.
+							package the application -->(*.war_v1,jdk11,tomcat9) --> myapppkg1
+							Package/Image --> Static file. it is non-executable
+							
+			
+			QA 			--> (*.war_V1) 	myapppkg1(*.war_v1,jdk11,tomcat9)	runs a container. 
+							Tomcat Server(jdk1.8,tomcat8) --> to test application.
+			
+			UAT 		--> (*.war_V1) 
+			            	Tomcat Server(jdk1.8,tomcat8) --> to test application.
+			
+			PROD 		--> (*.war_V1) 
+                        	Tomcat Server(jdk1.8,tomcat8) --> to test application.
+							
+							
+		Terminologies :::
+		
+			Container Engine  -- Core of Docker Architecture - used to create & Manage the Containers & Images 
+			Images 			  -- Static file - pkg of application & its dependencies - Non-Executable	
+			Container		  -- Executable units of Images -- 
+			Container Registry --> Global Registry to maintain the container images 
+			Container Repository --> Sub-Set of Container Registry. 
+			
+		Should Create a dockerhub account. 
+		https://hub.docker.com/
+		
+		Containers --> docker 
+		
+		AWS ==> ECS,ECR,EKS
+		AZ  ==> ACS,ACR,AKS 
+		
+		Docker Engine 
+		DockerHub 
+		Kubernetes
+		
+		
+		1. Install Container Engine. https://docs.docker.com/engine/install/
+		
+			sudo apt install docker.io -y		==> Install in Ubuntu 
+			
+			systemctl status docker 
+			systemctl start docker
+			systemctl enable docker 
+			
+			docker version
+			
+			docker images 
+			
+			docker ps 
+			
+			docker ps -a 
+			
+Next ::
+
+		pull/run the existing Docker images from dockerhub 
+		working with containers 
+		container volume
+		build user defined container images
+		
+			
