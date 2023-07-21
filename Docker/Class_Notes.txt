@@ -118,4 +118,98 @@ Next ::
 		container volume
 		build user defined container images
 		
+		
+		
+########################
+Day-15 - 21st July 2023
+########################
+
+		Test SErvers -- Tomcat Server(VM) --> jdk,tomcat, 8080
+		
+		
+		Images 			  		--> 	Static file - pkg of application & its dependencies - Non-Executable	
+										It composed of various layers.
+							 
+		Container Registry 		--> 	Global Registry to maintain the container images 
+										Create an Account and availed a Container Registry
+					
+		Container Repository 	--> 	Sub-Set of Container Registry. 
+										Repository1 - DEV_Team1 
 			
+		docker pull	==> USed to download the docker image from docker hub
+		docker run  ==> Used to Execute/Run the Container based on the that image.
+		
+		docker run centos 
+		
+		docker run centos sleep 20
+		
+		Running Containers :
+		
+			- Attached/Foreground Mode 	(Default)
+			- Detached/Background Mode
+			- Interactive Mode
+			
+		docker rm <container_id>
+		docker rmi <image_id>
+		docker rmi -f <image_id>
+		
+		How to run an application inside the container and access it using host machine?
+		
+		Web Application --> *.war ==> under tomcat ==> this is directly installed in VM -- 8080
+		<external_ip>:8080
+		
+		
+		How to run an application inside the container and access it using host machine?
+		
+		Port Mapping/Port Binding :::
+		
+		
+		tomcat container running - with default port 8080
+
+			docker run -it tomcat:8.0 bash
+		
+		
+			-p <host_port>:<container_port>
+			
+			docker run -it --name=mywebapp1 -p 8080:8080 tomcat:8.0		
+		
+		How to build container Image ?::::
+		
+		
+		Infra-Structure 
+		
+		Development/Deployment 
+		
+		docker exec -it <container_id> 
+		
+		docker commit  	==> will be executed against the container.
+			
+			docker commit <container_id> <Image_ID> 		
+		
+		docker build 	==> 
+			Dockerfile 
+			
+			docker build -t <image_id> .
+			
+Dockerfile 
+		
+FROM debian 
+RUN apt-get update 
+RUN apt-get install git -y
+
+
+		Create Access Token in dockerhub
+		
+		docker login -u loksaieta
+		
+		dckr_pat_RuLjnC3Cw4EavEV3CFg0zFqUmUg
+		
+		docker push loksaieta/mynewgitimg1
+		
+Next :: 
+		Docker Volume 
+		
+		Overview of Docker Compose / Docker Swarm 
+		
+		Kubernetes 
+					
