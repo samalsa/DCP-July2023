@@ -1,0 +1,221 @@
+		
+########################
+Day-16 - 24th July 2023
+########################		
+		
+		-- Jenkins_Master 	--> Schedule the builds 
+			Jenkins Slave 	--> Acts as a Build Server ==> Build application & Application Image.
+							--> Application Build	--> Compile the src_code & Create Artifacts 
+							--> Docker Build 		--> Build application Image using the Artifacts
+			
+CICD - > 
+
+	SCM_Checkout --> App_Build --> Docker_Build --> Publish_to_DockerHub
+
+Kubernetes for Deployment 
+
+	Docker Volume :::
+	
+	Application :::
+		Stateless Application
+				*.war file --> executed inside the container.
+					Application Create some output file  - Logs / Reports / any output file
+				
+			
+		Stateful Application 
+				*.War ==> Services have the trace of execution in the form of logs / Reports
+				
+		Map the Container volume with Host Volume.
+		
+		docker volume command ::: 
+		
+	
+	Multi Containers :::
+		
+		Overview of Docker Compose :::
+		
+			It is used to run Multiple Docker Containers as a service ::::
+		
+			Micro-Service --> User_Registration_Service ==> 3-tier 
+								-- Front-end,Application_Logic,Database 
+								
+			Docker-compose file ==>
+		
+		Docker Swarm ::
+		
+			Container Orchestration Tool :::
+					It is used to Manage only the Docker Containers 
+					It ensure high availability of Docker Containers
+					It create replicas of Containers to ensure high availability
+			
+		
+		Kubernetes 		
+		
+			Container Orchestration Tool :::
+				It is used to manage and deploy huge application services
+				It is used to Manage only the Containers 
+				It ensure high availability of Containers
+				It create replicas of Containers to ensure high availability
+				It Loadbalancing 
+				It Scale up/down
+				
+					Master / Nodes Architecture
+					
+						Kubernetes_Master
+							Kubernetes_WorkerNode1,2,3,4,5,...,n
+					
+				
+			webapp :::
+					E_Commerce Web portal : LIVE 
+						In normal days 5000 users access my appln  ==> 50000 users -- huge traffic 
+						
+		Kubernetes :::
+		
+				- Architecture
+
+			Kubernetes => Open Source Container Orchestration Tool
+				
+			Managed Services :::
+				AWS --> EKS 
+				AZ  --> AKS 
+				GCP --> GKS 
+				
+		Kubernetes Architecture :::
+		Core concepts :
+			Pods
+			Pod Networking
+			Controller_Manager Objects:
+				Replication Controller
+				ReplicaSets
+				Daemon
+				deployments
+			Services 
+				ClusterIP 
+				NodePort 
+				Load Balancer
+			Volumes
+				ConfigMaps
+				Secrets
+				Hostpath
+				Persistant Volume
+				Persistant Volume Claim
+			Kubernetes Package Manager - HELM 
+			
+		Kubernetes Architecture :::
+		
+			Master/Worknodes :::
+			
+			Kubernetes_Master			==> Validate the Incoming request/Schedule Pods to WorkerNodes 
+				Kubernetes_WorkerNode1	==> Used to Deploy the Pods 
+				Kubernetes_WorkerNode2
+				Kubernetes_WorkerNode3
+			
+			
+			Kubernetes_Master				(Active/Passive Master)
+				Cluster1 
+					Kubernetes_WorkerNode1	
+					Kubernetes_WorkerNode2
+					Kubernetes_WorkerNode3
+				Cluster2 
+					Kubernetes_WorkerNode1	
+					Kubernetes_WorkerNode2
+					Kubernetes_WorkerNode3	
+
+			Controller Manager => Ensure High Availability of Pods. Is used to keep the pods running in desired state.
+			
+		Installation of Kubernetes --
+		
+		
+		APP_CONFIG File -- *.yaml 
+		
+			pod name :
+			Replicas 
+			container_name
+			Image : loksaieta/mydcpjulyapp1    latest
+			Volume :
+			ContainerPort
+		
+		Kubectl	--> Is a Command Line Utility - used to interact with Kubernetes.
+		
+			Kubectl Commands :::
+			Kubectl Syntax :::
+			
+Next :
+
+		Installation of Kubernetes
+			Concepts ::
+		
+			
+########################
+Day-17 - 25th July 2023
+########################	
+
+		Installation & COnfiguration of Kubernetes
+		
+			Always recommended to go to the official site and collect the details
+			
+		Official Documentations :
+		
+		
+			- Minikube 
+			- Kubeadm
+		
+		
+			Kubernetes_Master			==> Validate the Incoming request/Schedule Pods to WorkerNodes 
+				Kubernetes_WorkerNode1	==> Used to Deploy the Pods 
+				Kubernetes_WorkerNode2
+		
+		
+		
+		Namespaces ==> Logical Partioning of Kubernetes Cluster
+		
+		
+		Kubernetes Concepts :::
+		
+			Pod  ===> 
+			
+			Manifest file == *.yaml
+			
+			
+			
+		kubectl exec == we can login to running pod 
+		
+		create the files 
+		
+		Access the service/Application running inside the pod using host
+		
+		
+		port mapping/binding ???
+		-p <host_port>:<container_Port>
+		
+		<external_IP>:<host_port>
+		
+		Kubernetes --> WN1 ???
+		
+		Services --> NodePort Service -->used to expose the pod to internet
+		
+		
+		<external_IP>:<node_port>
+		
+			CLusterIP 
+			LoadBalancer
+			
+		ReplicaSets & Replication Controller
+		
+				- Used to execute the desired/specific no. of pods 
+				- replicas - 5
+				
+				- RC -- uses Equality Based Operator 			
+							label ==> envi=dev
+									  envi=qa
+									  envi=uat
+									  
+				- RS -- uses Set-Based Operator 
+							label ==> envi in {dev,qa,uat}	
+
+		Daemonsets :::
+				- Used to run a copy of pod in all the available/set of workernodes.
+				
+Next ::
+
+		Deployment Controller Objects
