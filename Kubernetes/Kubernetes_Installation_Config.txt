@@ -5,7 +5,7 @@
 #https://kubernetes.io/docs/setup/
 #https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
 	
-#Add Port: 0 - 65535
+
 #Allow All Traffic for Demo!
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ###On Both Master and Worker Nodes:
