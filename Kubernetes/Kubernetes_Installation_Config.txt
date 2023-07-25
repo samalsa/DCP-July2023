@@ -177,7 +177,7 @@ sudo kubeadm config images pull
 #Initialize the cluster
 
 #sudo kubeadm init --pod-network-cidr=10.244.0.0/16
-sudo kubeadm init --pod-network-cidr=192.168.0.0/16 --ignore-preflight-errors=NumCPU --ignore-preflight-errors=Mem
+sudo kubeadm init --pod-network-cidr=10.244.0.0/16 --ignore-preflight-errors=NumCPU --ignore-preflight-errors=Mem
 
 #The initialization may take a few moments to finish. Expect an output similar to the following:
 
