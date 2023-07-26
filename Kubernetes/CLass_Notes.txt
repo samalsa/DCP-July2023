@@ -219,3 +219,93 @@ Day-17 - 25th July 2023
 Next ::
 
 		Deployment Controller Objects
+########################
+Day-18 - 26th July 2023
+########################			
+		
+		Deployment Controller Objects
+		Services 
+		Volumes 
+		
+		
+		Created an Image  myapp:v1.0  ==> Published to DockerHub
+		myapp:v1.0
+		myapp:v1.1
+		myapp:v1.2
+		myapp:v1.3
+		myapp:v1.4gg
+		
+		
+		- Deploy new version of Images 
+		- Upgrade
+		- Rollback
+		- Scale up
+		- Scale down
+		
+		Default Deployment Strategy:
+		
+		StrategyType:           RollingUpdate
+		
+		nginx:1.7.9		===> 	nginx:1.9
+		
+nginx-deploy-665fc99f75-d7xpp   1/1     Running   0             3m47s
+nginx-deploy-665fc99f75-dm9q7   1/1     Running   0             3m47s
+nginx-deploy-665fc99f75-gvgkm   1/1     Running   0             3m47s
+
+	Micro-Service BAsed Architecture 
+	
+	service1 --> 
+	
+	Kubernetes Services ::::
+	
+		ClusterIP
+		NodePort
+		LoadBalancer 
+		
+	Micro-Service 	--> 3-Tier Application 
+					-->	Front-end, Application_Logic, Backend
+					
+					Deployment Object for Application 
+					Service and map it to deployment object.
+					
+	Kubernetes Volumes :::
+	
+	emptyDir
+	hostpath
+	Config_Map
+	Secret 
+	Persistant Volume 
+	Persistant Volume Claim
+					
+	Config_Map
+				
+	
+	Secret
+	
+	Application_Image --> with all the dependencies 
+	Inputs to this Image 
+	
+	Img1 --> Deploy in QA / UAT / PROD 
+	
+	Config_Map & Secret ==> Used to pass the config files/data at run time
+	
+	PV 
+	PVC  --> 
+	
+		Static Provisioning
+		Dynamic Provisioning
+		
+	HostPath ::: 
+	
+	Namespace ::: ==> Is a logical partition of Cluster
+	
+	Environments ????
+	
+Next :	
+	Kubernetes Package Manager - HELM 
+	
+	Terraform
+	
+	Prometheus/Grafana
+	
+	Demo 
