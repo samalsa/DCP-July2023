@@ -1,0 +1,280 @@
+	
+########################
+Day-19 - 27th July 2023
+########################
+	
+		Kubernetes 
+		
+			Cluster --> WNodes1,............,15
+
+		Package Manager ????
+		
+		apt 	ubuntu 
+		yum     RHEL/Centos
+		dnf 	Fedora 
+		rpm
+		curl/wget/tar
+		
+		
+		HELM --> Package Manager for Kubernetes Cluster.
+		HELM - Can be installed in Kubernetes_Master.
+		Kubernetes Packages like:
+			Open-Source Kubernetes  --> Kubernetes Dashboard
+									--> Continuous Monitoring -> Prometheus/Grafana
+		
+		
+	Terraform :::
+	
+		Infra-Structure ::: 
+		
+		IAC --> Infra-Structure As Code.
+		
+			Terraform		==> Provisioning the Servers 
+			Ansible			==> Configuration of servers 
+			
+			
+		Shell Scripts / Inhouse tools 
+		
+		Terraform
+		
+		CFT 
+		ARM 
+			
+			- Identify the Scope - Target envi.
+			- Create/Write the Terraform Script -- HCL -- main.tf
+			- terraform init --> Used to install the providers 
+			- terraform plan --> Validate the script 
+			- terraform apply --> Actually implement the changes.
+		
+		
+		Install and Config Terraform ::::
+		
+			Install Terraform in Windows Machine. 		https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli
+				Create Environment Variable 
+			VS Code --> to create and work on Terraform		https://code.visualstudio.com/download
+			
+			
+			Create AWS Access Token and Key
+			
+		Terraform Actions :::
+		
+			- Create/add 	 	+	
+			- Delete/destroy 	-
+			- Update/change 	~
+			
+			
+			terraform destroy to terminate the resource.
+			
+			
+CICD Pipeline ::
+
+	1. SCM_Checkout - build - create artifacts - deploy to QA - Perform Testing - deploy to qat 
+	
+
+Pipeline1 ::
+
+	SCM_Checkout - Provision the QA Server 	- Configure QA Server 
+	
+	
+CICD Pipeline2 ::
+
+	1. SCM_Checkout - build - create artifacts - deploy to QA - Perform Testing 
+	
+
+Scenarios 2 :
+CICD Pipeline ::
+
+	1. SCM_Checkout - build - create artifacts - Provision the QA Server 	- Configure QA Server  - deploy to QA - Perform Testing 
+	
+	
+Terraform :: 
+	Installation 
+	Script - provider 
+	statefile
+	plan
+	apply 
+
+provider "aws" {
+  region     = "ap-south-1"
+  access_key = "AXPB36"
+  secret_key = "5rDd6u5Nvgq"
+}
+
+# Create AWS Instance
+
+resource "aws_instance" "dcpinstance1" {
+  
+  ami           = "ami-0f99c1965355b1274"
+  instance_type = "t2.micro"
+  key_name      = "loksaieta223key"
+
+  tags = {
+    Name = "Dummy_Server01"
+  }
+}
+
+
+
++ => Add new resource
+~ => update any existing resource
+- => Delete any existing resource
+
+
+terraform init
+
+terraform plan
+
+terraform apply
+
+terraform destroy
+
+terraform state list
+
+terraform apply -auto-approve
+
+
+*******
+
+Install Terraform --> Local Windows Machine!!!
+
+Use Command prompt to run Terraform commands like : terraform init, terraform plan, terraform apply, etc..
+
+Create the Config file ?
+
+Visual Studio Code  to create or develop Terraform Config files! i.e., *.tf files 
+
+
+provider "aws" {
+  region     = "ap-south-1"
+  access_key = "AKIAS4IUE"
+  secret_key = "CRNKDCbDNHgg2"
+}
+
+# Create VPC
+
+resource "aws_vpc" "myvpc9" {
+  cidr_block       = "10.0.0.0/16"
+  instance_tenancy = "default"
+
+  tags = {
+    Name = "myvpc9"
+  }
+}
+
+# Create Subnet 
+
+resource "aws_subnet" "mysubnet9" {
+  vpc_id     = aws_vpc.myvpc9.id
+  cidr_block = "10.0.1.0/24"
+
+  tags = {
+    Name = "mysubnet9"
+  }
+}
+
+# Internet Gateway
+
+resource "aws_internet_gateway" "mygw9" {
+  vpc_id = aws_vpc.myvpc9.id
+
+  tags = {
+    Name = "mygw9"
+  }
+}
+
+# Route Table
+
+resource "aws_route_table" "myrt9" {
+  vpc_id = aws_vpc.myvpc9.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.mygw9.id
+  }
+
+  tags = {
+    Name = "myrt9"
+  }
+}
+
+# Route Table Association
+
+resource "aws_route_table_association" "myrta9" {
+  subnet_id      = aws_subnet.mysubnet9.id
+  route_table_id = aws_route_table.myrt9.id
+}
+
+# Security Groups
+
+resource "aws_security_group" "mysg9" {
+  name        = "mysg9"
+  description = "Allow inbound traffic"
+  vpc_id      = aws_vpc.myvpc9.id
+
+  ingress {
+    description      = "HTTP"
+    from_port        = 80
+    to_port          = 80
+    protocol         = "tcp"
+    cidr_blocks      = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description      = "SSH"
+    from_port        = 22
+    to_port          = 22
+    protocol         = "tcp"
+    cidr_blocks      = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks      = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+  }
+
+  tags = {
+    Name = "mysg9"
+  }
+}
+
+# Create Instance
+
+resource "aws_instance" "instance9" {
+  ami           = "ami-0f99c1965355b1274"
+  instance_type = "t2.micro"
+  associate_public_ip_address = true
+  subnet_id = aws_subnet.mysubnet9.id
+  vpc_security_group_ids = [aws_security_group.mysg9.id]
+  key_name = "loksaieta223key"
+  count = 5 
+
+  tags = {
+    Name = "dcpDummy_Server"
+  }
+}
+
+	
+Continuous monitoring!
+
+	Prod Deployment :::
+		Servers/ Infra 
+		Application 
+		Container/Kubernetes 
+		
+		Monitoring :
+			Infra-Structure	--> Prometheus/Grafana/Dynatrace/Nagios 
+							Prometheus 	- Monotoring Tool	
+							Grafana		- Visualization Tool
+					
+			Application 	--> AppDyanmics
+			
+		Monitoring Team :::
+		
+Next ::
+
+		Installation & Prometheus / Grafana 
+		
+		Demo 
